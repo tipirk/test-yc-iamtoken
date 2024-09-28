@@ -33,4 +33,3 @@ jobs:
           const coredemo = require('@actions/core')
           let id_token = await coredemo.getIDToken()
           coredemo.setOutput('id_token', id_token)
-          echo "idToken=${IDTOKEN}" >> $GITHUB_OUTPUT
