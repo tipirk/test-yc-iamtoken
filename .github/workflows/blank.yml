@@ -31,7 +31,8 @@ jobs:
           const runtimeUrl = process.env['ACTIONS_ID_TOKEN_REQUEST_URL']
           core.setOutput('TOKEN', token.trim())
           core.setOutput('IDTOKENURL', runtimeUrl.trim()
-          - run: |
+    - name: GetToken
+      run: 
         IDTOKEN=$(curl -H "Authorization: bearer  ${{steps.script.outputs.TOKEN}}" ${{steps.script.outputs.IDTOKENURL}}  -H "Accept: application/json; api-version=2.0" -H "Content-Type: application/json" -d "{}" | jq -r '.value')
         echo $IDTOKEN
         jwtd() {
