@@ -21,7 +21,7 @@ jobs:
   # This workflow contains a single job called "build"
   job:
     environment: Production
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
     - name: Install OIDC Client from Core Package
       run: npm install @actions/core@1.6.0 @actions/http-client
