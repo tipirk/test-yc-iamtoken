@@ -50,4 +50,8 @@ jobs:
         IAMTOKEN=$(curl -H "Content-Type: application/x-www-form-urlencoded" -d "grant_type=urn:ietf:params:oauth:grant-type:token-exchange&requested_token_type=urn:ietf:params:oauth:token-type:access_token&audience=aje2qak7bd0rl7pjcfom&subject_token= ${{steps.tokenid.outputs.IDTOKEN}}&subject_token_type=urn:ietf:params:oauth:token-type:id_token" -X POST https://auth.yandex.cloud/oauth/token -v)
         echo $IAMTOKEN
       id: IAMtokenid
-      
+    - name: InstallYC
+      run: |
+        curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
+        yc version
+      id: instalyc
