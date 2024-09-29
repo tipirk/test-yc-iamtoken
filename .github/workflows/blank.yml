@@ -44,3 +44,9 @@ jobs:
         jwtd $IDTOKEN
         echo "idToken=${IDTOKEN}" >> $GITHUB_OUTPUT
       id: tokenid
+    - name: GetIAMToken
+      run: |
+        IAMTOKEN=$(curl -H "Content-Type: application/x-www-form-urlencoded" -d "grant_type=urn:ietf:params:oauth:grant-type:token-exchange&requested_token_type=urn:ietf:params:oauth:token-type:access_token&audience=aje2qak7bd0rl7pjcfom&subject_token= ${{steps.script.outputs.TOKEN}&subject_token_type=urn:ietf:params:oauth:token-type:id_token" -X POST https://auth.yandex.cloud/oauth/token -v)
+        echo $IAMTOKEN
+      id: IAMtokenid
+      
