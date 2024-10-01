@@ -46,10 +46,10 @@ jobs:
       id: tokenid
     - name: GetIAMToken
       run: |
-        IAMTOKEN=$(curl -H "Content-Type: application/x-www-form-urlencoded" -d "grant_type=urn:ietf:params:oauth:grant-type:token-exchange&requested_token_type=urn:ietf:params:oauth:token-type:access_token&audience=aje2qak7bd0rl7pjcfom&subject_token= ${{steps.tokenid.outputs.IDTOKEN}}&subject_token_type=urn:ietf:params:oauth:token-type:id_token" -X POST https://auth.yandex.cloud/oauth/token | jq -r '.access_token')
+        IAMTOKEN=$(curl -sH "Content-Type: application/x-www-form-urlencoded" -d "grant_type=urn:ietf:params:oauth:grant-type:token-exchange&requested_token_type=urn:ietf:params:oauth:token-type:access_token&audience=aje2qak7bd0rl7pjcfom&subject_token= ${{steps.tokenid.outputs.IDTOKEN}}&subject_token_type=urn:ietf:params:oauth:token-type:id_token" -X POST https://auth.yandex.cloud/oauth/token | jq -r '.access_token')
         echo "IAMToken=${IAMTOKEN}" >> $GITHUB_OUTPUT
       id: IAMtoken
     - name: GetYCFolder
       run: |
-        curl -H "Authorization: Bearer ${{steps.IAMtoken.outputs.IAMTOKEN}}" https://resource-manager.api.cloud.yandex.net/resource-manager/v1/folders/b1g7ffbde2oc6u1922uu 
-      id: hetfolderid
+        curl -sH "Authorization: Bearer ${{steps.IAMtoken.outputs.IAMTOKEN}}" https://resource-manager.api.cloud.yandex.net/resource-manager/v1/folders/b1g7ffbde2oc6u1922uu 
+      id: getfolderid
