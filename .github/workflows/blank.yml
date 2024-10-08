@@ -53,7 +53,8 @@ jobs:
             "requested_token_type": "urn:ietf:params:oauth:token-type:access_token",
             "subject_token_type": "urn:ietf:params:oauth:token-type:id_token",
             "subject_token": "${{steps.tokenid.outputs.IDTOKEN}}"
-          } EOF )"
+          } 
+          EOF )"
         IAM_TOKEN="$(curl -s "https://auth.yandex.cloud/oauth/token" \
           --header "Content-Type: application/x-www-form-urlencoded" \
           --data "${PAYLOAD}" \
