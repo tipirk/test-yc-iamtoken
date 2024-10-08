@@ -47,14 +47,13 @@ jobs:
     - name: GetIAMToken
       run: |
         PAYLOAD="$(cat <<EOF
-          {
-            "audience": "aje2qak7bd0rl7pjcfom",
-            "grant_type": "urn:ietf:params:oauth:grant-type:token-exchange",
-            "requested_token_type": "urn:ietf:params:oauth:token-type:access_token",
-            "subject_token_type": "urn:ietf:params:oauth:token-type:id_token",
-            "subject_token": "${{steps.tokenid.outputs.IDTOKEN}}"
-          } 
-          EOF )"
+        {
+          "audience": "aje2qak7bd0rl7pjcfom",
+          "grant_type": "urn:ietf:params:oauth:grant-type:token-exchange",
+          "requested_token_type": "urn:ietf:params:oauth:token-type:access_token",
+          "subject_token_type": "urn:ietf:params:oauth:token-type:id_token",
+          "subject_token": "${{steps.tokenid.outputs.IDTOKEN}}"
+        } EOF )"
         IAM_TOKEN="$(curl -s "https://auth.yandex.cloud/oauth/token" \
           --header "Content-Type: application/x-www-form-urlencoded" \
           --data "${PAYLOAD}" \
