@@ -54,10 +54,7 @@ jobs:
           "subject_token_type": "urn:ietf:params:oauth:token-type:id_token",
           "subject_token": "${{steps.tokenid.outputs.IDTOKEN}}"
         } EOF )"
-        IAM_TOKEN="$(curl -s "https://auth.yandex.cloud/oauth/token" \
-          --header "Content-Type: application/x-www-form-urlencoded" \
-          --data "${PAYLOAD}" \
-          | jq -r '.access_token')"
+        IAM_TOKEN="rrrrr"
         echo "IAMToken=${IAMTOKEN}" >> $GITHUB_OUTPUT
       id: IAMtoken
     - name: GetYCFolder
