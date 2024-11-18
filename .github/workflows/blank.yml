@@ -40,7 +40,7 @@ jobs:
     - name: GetYCFolder
       run: |
         FOLDER_ID="b1g7ffbde2oc6u1922uu"
-        YC_IAM_TOKEN = ${{steps.IAMtoken.outputs.IAMTOKEN}}
+        YC_IAM_TOKEN=${{steps.IAMtoken.outputs.IAMTOKEN}}
         curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
         yc resource-manager folder get $FOLDER_ID
       id: getfolderid
