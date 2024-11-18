@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install OIDC Client from Core Package
-      run: npm install @actions/core@1.6.0 @actions/http-client
+      run: npm install @actions/core @actions/http-client
     - name: Get Id Token
       uses: actions/github-script@v6
       id: tokenid
